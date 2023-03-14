@@ -10,8 +10,16 @@ app.use(express.json());
 
 const YOUR_DOMAIN = 'https://subscription-server.herokuapp.com/';
 
-app.get('/snippets', async (req, res) => {
-  res.send([{ text: 'someText', title: 'First post' }]);
+app.get('/posts', async (req, res) => {
+  const posts = [
+    { title: 'For the first time everyone is ready for...', id: 1 },
+    { title: 'She never thought a shoe could be so comfy', id: 2 },
+    { title: 'You never guess what happened !!', id: 3 },
+  ];
+  res.send(posts);
+});
+app.get('/post/:id', async (req, res) => {
+  res.send(req);
 });
 app.post('/create-checkout-session', async (req, res) => {
   const prices = await stripe.prices.list({
