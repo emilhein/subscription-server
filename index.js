@@ -8,7 +8,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const YOUR_DOMAIN = 'http://localhost:3000';
+const YOUR_DOMAIN = 'https://subscription-server.herokuapp.com/';
 
 app.get('/snippets', async (req, res) => {
   res.send([{ text: 'someText', title: 'First post' }]);
@@ -119,5 +119,9 @@ app.post(
     response.send();
   }
 );
-
-app.listen(3000, () => console.log('Running on port 3000'));
+const PORT = process.env.PORT || 80;
+var server = app.listen(PORT, function () {
+  var host = server.address().address;
+  var port = server.address().port;
+  console.log('server is listening at http://%s:%s', host, port);
+});
