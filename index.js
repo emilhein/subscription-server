@@ -29,6 +29,9 @@ app.get('/post/:id', async (req, res) => {
   const { id } = req.params;
   res.send(id);
 });
+app.get('/', async (req, res) => {
+  res.send();
+});
 app.post('/create-checkout-session', async (req, res) => {
   const prices = await stripe.prices.list({
     lookup_keys: [req.body.lookup_key],
