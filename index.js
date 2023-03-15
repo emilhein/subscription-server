@@ -15,7 +15,7 @@ app.use(
   })
 );
 //Cors Configuration - End
-const YOUR_DOMAIN = 'https://subscription-server.herokuapp.com/';
+const YOUR_DOMAIN = 'https://main--legendary-rolypoly-3fc8b9.netlify.app/';
 
 app.get('/posts', async (req, res) => {
   const posts = [
@@ -58,7 +58,7 @@ app.post('/create-checkout-session', async (req, res) => {
     ],
     mode: 'subscription',
     success_url: `${YOUR_DOMAIN}/?success=true&session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${YOUR_DOMAIN}?canceled=true`,
+    cancel_url: `${YOUR_DOMAIN}/cancel?canceled=true`,
   });
   console.log(session);
   res.redirect(303, session.url);
