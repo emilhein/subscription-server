@@ -20,17 +20,17 @@ const YOUR_DOMAIN = 'https://main--legendary-rolypoly-3fc8b9.netlify.app';
 app.get('/posts', async (req, res) => {
   const posts = [
     {
-      title: 'For the first time everyone is ready for...',
+      title: 'News story 1',
       id: 1,
       img: 'https://images.unsplash.com/photo-1528785198459-ec50485704c7?ixlib=rb-0.3.5&s=3a2fc3039516555bbb2e9cd2967bd321&auto=format&fit=crop&w=1537&q=80',
     },
     {
-      title: 'She never thought a shoe could be so comfy',
+      title: 'Blog post 2',
       id: 2,
       img: 'https://images.unsplash.com/photo-1525543907410-b2562b6796d6?ixlib=rb-0.3.5&s=9ff8e5e718a6a40cbd0e1471235912f4&auto=format&fit=crop&w=3452&q=80',
     },
     {
-      title: 'You never guess what happened !!',
+      title: 'Article 3',
       id: 3,
       img: 'https://images.unsplash.com/photo-1622186477895-f2af6a0f5a97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
     },
