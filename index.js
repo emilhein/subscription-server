@@ -1,11 +1,20 @@
 // This is your test secret API key.
 const stripe = require('stripe')(process.env.STRIPE_PK);
 const express = require('express');
+const cors = require('cors');
+
 const app = express();
-app.use(express.static('public'));
+// app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+//Cors Configuration - Start
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+);
+//Cors Configuration - End
 const YOUR_DOMAIN = 'https://subscription-server.herokuapp.com/';
 
 app.get('/posts', async (req, res) => {
