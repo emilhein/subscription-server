@@ -15,7 +15,7 @@ app.use(
   })
 );
 //Cors Configuration - End
-const YOUR_DOMAIN = 'https://main--legendary-rolypoly-3fc8b9.netlify.app/';
+const YOUR_DOMAIN = 'https://main--legendary-rolypoly-3fc8b9.netlify.app';
 
 app.get('/posts', async (req, res) => {
   const posts = [
