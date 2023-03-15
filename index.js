@@ -32,6 +32,16 @@ app.get('/post/:id', async (req, res) => {
 app.get('/', async (req, res) => {
   res.send();
 });
+
+app.get('/subscription/success', async (req, res) => {
+  const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
+  const customer = await stripe.customers.retrieve(session.customer);
+
+  res.send(
+    `<html><body><h1>Thanks for your order, ${customer.name}!</h1></body></html>`
+  );
+});
+
 app.post('/create-checkout-session', async (req, res) => {
   const prices = await stripe.prices.list({
     lookup_keys: [req.body.lookup_key],
@@ -50,7 +60,7 @@ app.post('/create-checkout-session', async (req, res) => {
     success_url: `${YOUR_DOMAIN}/?success=true&session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${YOUR_DOMAIN}?canceled=true`,
   });
-
+  console.log(session);
   res.redirect(303, session.url);
 });
 
