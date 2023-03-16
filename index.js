@@ -2,7 +2,7 @@
 const stripe = require('stripe')(process.env.STRIPE_PK);
 const express = require('express');
 const cors = require('cors');
-import { faker } from '@faker-js/faker';
+const { faker } = require('@faker-js/faker');
 
 const app = express();
 // app.use(express.static('public'));
