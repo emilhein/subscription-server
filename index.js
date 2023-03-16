@@ -40,7 +40,10 @@ app.get('/posts', async (req, res) => {
 });
 app.get('/post/:id', async (req, res) => {
   const { id } = req.params;
-  console.log(req);
+  const customerId = req.get('CustomerId');
+  console.log(customerId);
+  const customer = await getCustomer(customerId);
+  console.log(customer);
   let article = {
     id,
     body: faker.lorem.paragraphs(10),
