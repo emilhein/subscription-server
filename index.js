@@ -40,12 +40,19 @@ app.get('/posts', async (req, res) => {
 });
 app.get('/post/:id', async (req, res) => {
   const { id } = req.params;
+  console.log(req);
   let article = {
     id,
     body: faker.lorem.paragraphs(10),
   };
   res.send(article);
 });
+
+const getCustomer = async (id) => {
+  const customer = await stripe.customers.retrieve(id);
+  return customer;
+};
+
 app.get('/', async (req, res) => {
   res.send();
 });
