@@ -40,14 +40,19 @@ app.get('/posts', async (req, res) => {
 });
 app.get('/post/:id', async (req, res) => {
   const { id } = req.params;
-  const customerId = req.get('CustomerId');
-  console.log(customerId);
-  const customer = await getCustomer(customerId);
-  console.log(customer);
   let article = {
     id,
-    body: faker.lorem.paragraphs(10),
   };
+
+  const customerId = req.get('customerId');
+  console.log(customerId);
+  if (!customerId) {
+    article.body = 'Not subscribed';
+  } else {
+    const customer = await getCustomer(customerId);
+    console.log(customer);
+    article.body = faker.lorem.paragraphs(10);
+  }
   res.send(article);
 });
 
