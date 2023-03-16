@@ -2,6 +2,7 @@
 const stripe = require('stripe')(process.env.STRIPE_PK);
 const express = require('express');
 const cors = require('cors');
+import { faker } from '@faker-js/faker';
 
 const app = express();
 // app.use(express.static('public'));
@@ -39,7 +40,11 @@ app.get('/posts', async (req, res) => {
 });
 app.get('/post/:id', async (req, res) => {
   const { id } = req.params;
-  res.send(id);
+  let article = {
+    id,
+    body: faker.lorem.paragraphs(10),
+  };
+  res.send(article);
 });
 app.get('/', async (req, res) => {
   res.send();
