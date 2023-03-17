@@ -40,30 +40,27 @@ app.get('/posts', async (req, res) => {
 });
 app.get('/post/:id', async (req, res) => {
   const { id } = req.params;
-  let article = {
-    id,
-  };
+  let article = { id, body: 'Not subscribed' };
   try {
     const customerId = req.get('customerId');
-    console.log(customerId);
-    if (!customerId) {
-      article.body = 'Not subscribed';
-    } else {
-      const customer = await getCustomer(customerId);
+    if (customerId) {
+      const customer = await isCustomerSubscriped(customerId);
       console.log(customer);
       article.body = faker.lorem.paragraphs(10);
     }
     res.send(article);
   } catch (err) {
-    article.body = 'Not subscribed';
     res.send(article);
   }
 });
 
-const getCustomer = async (id) => {
+const isCustomerSubscriped = async (id) => {
   try {
-    const customer = await stripe.customers.retrieve(id);
-    return customer;
+    // const customer = await stripe.customers.retrieve(id);
+    const subscriptions = await stripe.subscriptions.list({
+      customer: id,
+    });
+    return subscriptions;
   } catch (err) {
     return Promise.reject(err);
   }
