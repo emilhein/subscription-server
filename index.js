@@ -16,7 +16,7 @@ app.use(
   })
 );
 //Cors Configuration - End
-const YOUR_DOMAIN = 'https://main--legendary-rolypoly-3fc8b9.netlify.app';
+const YOUR_DOMAIN = 'https://blog-subscription.netlify.app/';
 const posts = [
   {
     title: 'News story 1',
