@@ -78,10 +78,6 @@ app.get('/subscription/success', async (req, res) => {
   console.log(customer);
   const redurectUrl = `${YOUR_DOMAIN}/success/${customer.id}`;
   res.redirect(303, redurectUrl);
-
-  // res.send(
-  //   `<html><body><h1>Thanks for your order, ${customer.name}!</h1></body></html>`
-  // );
 });
 
 // app.post('/create-checkout-session', async (req, res) => {
