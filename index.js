@@ -44,9 +44,11 @@ app.get('/post/:id', async (req, res) => {
   try {
     const customerId = req.get('customerId');
     if (customerId) {
-      const customer = await isCustomerSubscriped(customerId);
-      console.log(customer);
-      article.body = faker.lorem.paragraphs(10);
+      const subscription = await isCustomerSubscriped(customerId);
+      console.log(subscription);
+      if (subscription?.data[0]?.status === 'active') {
+        article.body = faker.lorem.paragraphs(10);
+      }
     }
     res.send(article);
   } catch (err) {
